@@ -1,0 +1,22 @@
+name: presentation
+description: "presentation"
+publish_to: 'none'
+
+version: 1.0.0+1
+environment:
+  sdk: '>=3.3.4 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flutter_riverpod: ^2.6.1
+  equatable: 2.0.5
+
+  domain:
+    path: ../domain
+
+  # ОБРАТИТЬ ВНИМАНИЕ
+  rick_and_morty:
+    path: ../../../rick_and_morty
+

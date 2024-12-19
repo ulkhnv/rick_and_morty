@@ -1,0 +1,17 @@
+name: data
+description: "data"
+publish_to: 'none'
+
+version: 1.0.0+1
+environment:
+  sdk: '>=3.3.4 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  dio: ^5.7.0
+  shared_preferences: ^2.2.3
+
+  domain:
+    path: ../domain
