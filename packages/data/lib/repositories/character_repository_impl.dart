@@ -5,15 +5,15 @@ import 'package:domain/entities/character.dart';
 import 'package:domain/repositories/character_repository.dart';
 
 class CharacterRepositoryImpl implements CharacterRepository {
-  final CharacterLocalDataSource localDataSource;
-  final CharacterRemoteDataSource remoteDataSource;
-  final CharacterMapper characterMapper;
-
   CharacterRepositoryImpl({
     required this.localDataSource,
     required this.remoteDataSource,
     required this.characterMapper,
   });
+
+  final CharacterLocalDataSource localDataSource;
+  final CharacterRemoteDataSource remoteDataSource;
+  final CharacterMapper characterMapper;
 
   @override
   Future<List<Character>> getAllCharactersFromLocal() async {

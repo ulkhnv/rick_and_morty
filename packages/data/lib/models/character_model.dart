@@ -1,15 +1,6 @@
 import 'package:data/models/location_model.dart';
-import 'package:domain/entities/character.dart';
 
 class CharacterModel {
-  final int id;
-  final String name;
-  final String status;
-  final String species;
-  final Location origin;
-  final Location location;
-  final String image;
-
   const CharacterModel({
     required this.id,
     required this.name,
@@ -19,6 +10,14 @@ class CharacterModel {
     required this.location,
     required this.image,
   });
+
+  final int id;
+  final String name;
+  final String status;
+  final String species;
+  final LocationModel origin;
+  final LocationModel location;
+  final String image;
 
   factory CharacterModel.fromJson(Map<String, dynamic> json) {
     return CharacterModel(

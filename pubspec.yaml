@@ -12,14 +12,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.6
-  dio: ^5.7.0
-  flutter_riverpod: ^2.6.1
-  shared_preferences: ^2.2.3
 
-  domain:
-    path: packages/domain
-  data:
-    path: packages/data
   presentation:
     path: packages/presentation
 

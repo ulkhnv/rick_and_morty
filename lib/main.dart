@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:presentation/constants/app_colors.dart';
 import 'package:presentation/screens/character_screen.dart';
-import 'package:rick_and_morty/core/di.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final prefs = await SharedPreferences.getInstance();
-  runApp(ProviderScope(
-    overrides: [
-      sharedPreferencesProvider.overrideWithValue(prefs),
-    ],
-    child: const App(),
+  runApp(const ProviderScope(
+    child: App(),
   ));
 }
 
@@ -23,7 +18,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: const Color(0xFF24282F),
+        scaffoldBackgroundColor: AppColors.mainBackground,
       ),
       home: const CharacterScreen(),
     );
