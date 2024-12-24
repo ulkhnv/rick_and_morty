@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:data/constants.dart';
 import 'package:data/models/character_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -9,12 +10,10 @@ abstract class CharacterLocalDataSource {
   Future<void> saveAllCharacters(List<CharacterModel> characterModels);
 }
 
-const cachedCharacters = "cachedCharacters";
-
 class CharacterLocalDataSourceImpl implements CharacterLocalDataSource {
-  final SharedPreferences sharedPreferences;
-
   CharacterLocalDataSourceImpl({required this.sharedPreferences});
+
+  final SharedPreferences sharedPreferences;
 
   @override
   Future<List<CharacterModel>> getAllCharacters() {

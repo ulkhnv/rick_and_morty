@@ -8,9 +8,9 @@ abstract class CharacterRemoteDataSource {
 const String baseCharacterUrl = 'https://rickandmortyapi.com/api/character';
 
 class CharacterRemoteDataSourceImpl implements CharacterRemoteDataSource {
-  final Dio dio;
-
   CharacterRemoteDataSourceImpl({required this.dio});
+
+  final Dio dio;
 
   @override
   Future<List<CharacterModel>> getAllCharacters() async {

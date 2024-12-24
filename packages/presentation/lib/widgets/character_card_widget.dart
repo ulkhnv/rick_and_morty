@@ -1,16 +1,17 @@
-import 'package:domain/entities/character.dart';
 import 'package:flutter/material.dart';
+import 'package:presentation/constants/app_colors.dart';
+import 'package:presentation/model/character_ui_model.dart';
 
 class CharacterCard extends StatelessWidget {
-  final Character character;
-
   const CharacterCard({Key? key, required this.character}) : super(key: key);
+
+  final CharacterUIModel character;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Color(0xFF3C3E44),
+        color: AppColors.cellBackground,
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
@@ -47,9 +48,7 @@ class CharacterCard extends StatelessWidget {
                       height: 8,
                       width: 8,
                       decoration: BoxDecoration(
-                        color: character.status == 'Alive'
-                            ? Colors.green
-                            : Colors.red,
+                        color: character.isAlive() ? Colors.green : Colors.red,
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),

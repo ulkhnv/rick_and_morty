@@ -1,7 +1,11 @@
-import 'package:domain/entities/character.dart';
+class LocationModel {
+  const LocationModel({
+    required this.name,
+    required this.url,
+  });
 
-class LocationModel extends Location {
-  LocationModel({name, url}) : super(name: name, url: url);
+  final String name;
+  final String url;
 
   factory LocationModel.fromJson(Map<String, dynamic> json) {
     return LocationModel(
