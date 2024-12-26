@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:presentation/bloc/character_bloc.dart';
 import 'package:presentation/constants/app_colors.dart';
 import 'package:presentation/screens/character_screen.dart';
+import 'package:rick_and_morty/core/di.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const ProviderScope(
-    child: App(),
-  ));
+  await setupDI();
+  runApp(const App());
 }
 
 class App extends StatelessWidget {
@@ -20,7 +21,10 @@ class App extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: AppColors.mainBackground,
       ),
-      home: const CharacterScreen(),
+      home: BlocProvider(
+        create: (context) => sl<CharacterBloc>(),
+        child: const CharacterScreen(),
+      ),
     );
   }
 }

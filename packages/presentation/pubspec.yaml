@@ -10,14 +10,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flutter_riverpod: ^2.6.1
+  flutter_bloc: ^8.1.6
 
   data:
     path: ../data
   domain:
     path: ../domain
-
-  # ОБРАТИТЬ ВНИМАНИЕ
-  rick_and_morty:
-    path: ../../../rick_and_morty
-
