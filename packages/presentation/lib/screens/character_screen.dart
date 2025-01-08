@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:presentation/bloc/character_bloc.dart';
 import 'package:presentation/bloc/character_event.dart';
 import 'package:presentation/bloc/character_state.dart';
+import 'package:presentation/model/character_detail_args.dart';
 import 'package:presentation/widgets/character_card_widget.dart';
 
 class CharacterScreen extends StatelessWidget {
@@ -25,7 +27,16 @@ class CharacterScreen extends StatelessWidget {
 
             return ListView.separated(
               itemBuilder: (context, index) {
-                return CharacterCard(character: characters[index]);
+                return GestureDetector(
+                  onTap: () {
+                    context.go("/characters/character-detail",
+                        extra: CharacterDetailArgs(
+                          index: index,
+                          characters: characters,
+                        ));
+                  },
+                  child: CharacterCard(character: characters[index]),
+                );
               },
               separatorBuilder: (context, index) {
                 return Divider(
