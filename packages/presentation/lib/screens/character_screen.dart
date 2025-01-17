@@ -1,39 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:presentation/bloc/character_bloc.dart';
-import 'package:presentation/bloc/character_event.dart';
-import 'package:presentation/bloc/character_state.dart';
-import 'package:presentation/model/character_detail_args.dart';
+import 'package:presentation/bloc/bloc_screen.dart';
+import 'package:presentation/navigator/base_page.dart';
+import 'package:presentation/screens/character_bloc.dart';
+import 'package:presentation/screens/character_tile.dart';
 import 'package:presentation/widgets/character_card_widget.dart';
 
-class CharacterScreen extends StatelessWidget {
+class CharacterScreen extends BlocScreen {
   const CharacterScreen({super.key});
 
+  static const ROUTE_NAME = '/CharacterScreen';
+
+  static BasePage page() => BasePage(
+        key: UniqueKey(),
+        builder: (context) => const CharacterScreen(),
+        name: ROUTE_NAME,
+        isShowAnim: true,
+      );
+
+  @override
+  State<CharacterScreen> createState() => _CharacterScreenState();
+}
+
+class _CharacterScreenState
+    extends BlocScreenState<CharacterScreen, CharacterBloc> {
   @override
   Widget build(BuildContext context) {
-    context.read<CharacterBloc>().add(LoadCharactersEvent());
     return Scaffold(
       appBar: AppBar(
         title: Text('Rick and Morty'),
         centerTitle: true,
       ),
-      body: BlocBuilder<CharacterBloc, CharacterState>(
-        builder: (context, state) {
-          if (state is CharacterLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is CharacterLoaded) {
-            final characters = state.characters;
-
+      body: StreamBuilder(
+        stream: bloc.dataStream,
+        builder: (context, snapshot) {
+          final tile = snapshot.data;
+          if (tile == null || tile.isLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (tile.data is CharacterTile) {
+            final characters = tile.data.characters;
             return ListView.separated(
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    context.go("/characters/character-detail",
-                        extra: CharacterDetailArgs(
-                          index: index,
-                          characters: characters,
-                        ));
+                    bloc.pushCharacterDetailScreen(characters, index);
                   },
                   child: CharacterCard(character: characters[index]),
                 );
@@ -46,7 +57,7 @@ class CharacterScreen extends StatelessWidget {
               itemCount: characters.length,
             );
           } else {
-            return const Center(child: Text('Что-то пошло не так.'));
+            return SizedBox.shrink();
           }
         },
       ),

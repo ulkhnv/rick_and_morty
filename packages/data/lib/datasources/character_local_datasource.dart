@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:data/constants.dart';
+import 'package:data/constants/constants.dart';
 import 'package:data/models/character_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

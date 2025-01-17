@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
-import 'package:domain/di.dart';
-import 'package:data/di.dart';
-import 'package:presentation/di.dart';
+import 'package:domain/di/app_injector.dart';
+import 'package:data/di/app_injector.dart';
+import 'package:presentation/di/app_injector.dart';
 
 final GetIt sl = GetIt.instance;
 
